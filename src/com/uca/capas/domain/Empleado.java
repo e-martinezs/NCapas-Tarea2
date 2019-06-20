@@ -31,9 +31,9 @@ public class Empleado {
 	@Column(name="sucural")
 	private Integer idSucursal;
 	
-	@ManyToOne(fetch=FetchType.LAZY)
+	/*@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="id")
-	private Sucursal sucursal;
+	private Sucursal sucursal;*/
 	
 	public Empleado() {
 		
@@ -87,11 +87,11 @@ public class Empleado {
 		this.idSucursal = idSucursal;
 	}
 
-	public Sucursal getSucursal() {
+	/*public Sucursal getSucursal() {
 		return sucursal;
 	}
 
 	public void setSucursal(Sucursal sucursal) {
 		this.sucursal = sucursal;
-	}
+	}*/
 }

@@ -26,14 +26,14 @@ public class Sucursal {
 	@Column(name="horarios")
 	private String horarios;
 	
-	@Column(name="nMesas")
+	@Column(name="nmesas")
 	private Integer nMesas;
 	
-	@Column(name="nomGerente")
+	@Column(name="nomgerente")
 	private String nomGerente;
 	
-	@OneToMany(mappedBy="sucursal", fetch=FetchType.LAZY)
-	private List<Empleado> empleados;
+	/*@OneToMany(mappedBy="sucursal", fetch=FetchType.LAZY)
+	private List<Empleado> empleados;*/
 	
 	public Sucursal() {
 		
@@ -87,11 +87,11 @@ public class Sucursal {
 		this.nomGerente = nomGerente;
 	}
 
-	public List<Empleado> getEmpleados() {
+	/*public List<Empleado> getEmpleados() {
 		return empleados;
 	}
 
 	public void setEmpleados(List<Empleado> empleados) {
 		this.empleados = empleados;
-	}
+	}*/
 }
