@@ -18,6 +18,11 @@ public class SucursalServiceImpl implements SucursalService{
 	public List<Sucursal> findAll() {
 		return sucursalRepository.findAll();
 	}
+	
+	@Override
+	public Sucursal findById(int id) {
+		return sucursalRepository.getOne(id);
+	}
 
 	@Override
 	public Sucursal save(Sucursal s) {

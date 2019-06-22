@@ -3,9 +3,12 @@ package com.uca.capas.domain;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
@@ -13,6 +16,8 @@ import javax.persistence.Table;
 public class Empleado {
 
 	@Id
+	@GeneratedValue(generator="empleado_id_seq", strategy=GenerationType.AUTO)
+	@SequenceGenerator(name="empleado_id_seq", sequenceName="public.empleado_id_seq", allocationSize=1)
 	@Column(name="id")
 	private Integer id;
 	
@@ -26,14 +31,11 @@ public class Empleado {
 	private String genero;
 	
 	@Column(name="estado")
-	private String estado;
+	private Boolean estado;
 	
-	@Column(name="sucural")
-	private Integer idSucursal;
-	
-	/*@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="id")
-	private Sucursal sucursal;*/
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="sucursal")
+	private Sucursal sucursal;
 	
 	public Empleado() {
 		
@@ -71,27 +73,19 @@ public class Empleado {
 		this.genero = genero;
 	}
 
-	public String getEstado() {
+	public Boolean getEstado() {
 		return estado;
 	}
 
-	public void setEstado(String estado) {
+	public void setEstado(Boolean estado) {
 		this.estado = estado;
 	}
 
-	public Integer getIdSucursal() {
-		return idSucursal;
-	}
-
-	public void setIdSucursal(Integer idSucursal) {
-		this.idSucursal = idSucursal;
-	}
-
-	/*public Sucursal getSucursal() {
+	public Sucursal getSucursal() {
 		return sucursal;
 	}
 
 	public void setSucursal(Sucursal sucursal) {
 		this.sucursal = sucursal;
-	}*/
+	}
 }

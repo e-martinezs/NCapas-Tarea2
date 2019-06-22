@@ -5,8 +5,11 @@ import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
@@ -14,6 +17,8 @@ import javax.persistence.Table;
 public class Sucursal {
 
 	@Id
+	@GeneratedValue(generator="sucursal_id_seq", strategy=GenerationType.AUTO)
+	@SequenceGenerator(name="sucursal_id_seq", sequenceName="public.sucursal_id_seq", allocationSize=1)
 	@Column(name="id")
 	private Integer id;
 	
@@ -23,8 +28,11 @@ public class Sucursal {
 	@Column(name="ubicacion")
 	private String ubicacion;
 	
-	@Column(name="horarios")
-	private String horarios;
+	@Column(name="horario_apertura")
+	private String horarioApertura;
+	
+	@Column(name="horario_cierre")
+	private String horarioCierre;
 	
 	@Column(name="nmesas")
 	private Integer nMesas;
@@ -32,8 +40,8 @@ public class Sucursal {
 	@Column(name="nomgerente")
 	private String nomGerente;
 	
-	/*@OneToMany(mappedBy="sucursal", fetch=FetchType.LAZY)
-	private List<Empleado> empleados;*/
+	@OneToMany(mappedBy="sucursal", fetch=FetchType.LAZY)
+	private List<Empleado> empleados;
 	
 	public Sucursal() {
 		
@@ -63,12 +71,20 @@ public class Sucursal {
 		this.ubicacion = ubicacion;
 	}
 
-	public String getHorarios() {
-		return horarios;
+	public String getHorarioApertura() {
+		return horarioApertura;
 	}
 
-	public void setHorarios(String horarios) {
-		this.horarios = horarios;
+	public void setHorarioApertura(String horarioApertura) {
+		this.horarioApertura = horarioApertura;
+	}
+
+	public String getHorarioCierre() {
+		return horarioCierre;
+	}
+
+	public void setHorarioCierre(String horarioCierre) {
+		this.horarioCierre = horarioCierre;
 	}
 
 	public Integer getnMesas() {
@@ -87,11 +103,11 @@ public class Sucursal {
 		this.nomGerente = nomGerente;
 	}
 
-	/*public List<Empleado> getEmpleados() {
+	public List<Empleado> getEmpleados() {
 		return empleados;
 	}
 
 	public void setEmpleados(List<Empleado> empleados) {
 		this.empleados = empleados;
-	}*/
+	}
 }

@@ -9,7 +9,7 @@
 </head>
 <body>
 	<h1>Sucursales</h1>
-	<form action="${pageContext.request.contextPath}/agregarSucursal">
+	<form action="${pageContext.request.contextPath}/formSucursal">
 		<input type="submit" value="Agregar Sucursal">
 	</form>
 	
@@ -18,7 +18,8 @@
 			<th>Codigo</th>
 			<th>Nombre</th>
 			<th>Ubicacion</th>
-			<th>Horarios</th>
+			<th>Horario Apertura</th>
+			<th>Horario Cierre</th>
 			<th>Mesas</th>
 			<th>Gerente</th>
 		</tr>
@@ -27,17 +28,23 @@
 				<td>${sucursal.id}</td>
 				<td>${sucursal.nombre}</td>
 				<td>${sucursal.ubicacion}</td>
-				<td>${sucursal.horarios}</td>
+				<td>${sucursal.horarioApertura}</td>
+				<td>${sucursal.horarioCierre}</td>
 				<td>${sucursal.nMesas}</td>
 				<td>${sucursal.nomGerente}</td>
 				<td>
 					<form action="${pageContext.request.contextPath}/perfilSucursal">
 						<input type="submit" value="Ver">
-					</form>
-					<form action="${pageContext.request.contextPath}/editarSucursal">
+					</form>	
+				</td>
+				<td>
+					<form action="${pageContext.request.contextPath}/formSucursal">
 						<input type="submit" value="Editar">
 					</form>
+				</td>
+				<td>
 					<form action="${pageContext.request.contextPath}/eliminarSucursal">
+						<input type="hidden" name="id" value="${sucursal.id}">
 						<input type="submit" value="Eliminar">
 					</form>
 				</td>

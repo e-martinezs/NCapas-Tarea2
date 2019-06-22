@@ -2,9 +2,11 @@ package com.uca.capas.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.uca.capas.domain.Sucursal;
 import com.uca.capas.service.SucursalService;
 
 @Controller
@@ -21,24 +23,30 @@ public class SucursalController {
 		return mav;
 	}
 
-	@RequestMapping("/agregarSucursal")
-	public ModelAndView agregarSucursal() {
+	@RequestMapping("/formSucursal")
+	public ModelAndView formSucursal() {
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("main");
+		mav.addObject("sucursal", new Sucursal());
+		mav.setViewName("agregarSucursal");
 		return mav;
 	}
 	
 	@RequestMapping("/eliminarSucursal")
-	public ModelAndView eliminarSucursal() {
+	public ModelAndView eliminarSucursal(Integer id) {
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("main");
+		Sucursal s = sucursalService.findById(id);
+		sucursalService.delete(s);
+		mav.addObject("sucursales",sucursalService.findAll());
+		mav.setViewName("verSucursales");
 		return mav;
 	}
 	
-	@RequestMapping("/editarSucursal")
-	public ModelAndView editarSucursal() {
+	@RequestMapping("/agregarSucursal")
+	public ModelAndView updateSucursal(@ModelAttribute Sucursal s) {
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("main");
+		sucursalService.save(s);
+		mav.addObject("sucursales",sucursalService.findAll());
+		mav.setViewName("verSucursales");
 		return mav;
 	}
 	
