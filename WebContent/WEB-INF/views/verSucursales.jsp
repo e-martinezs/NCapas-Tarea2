@@ -9,7 +9,7 @@
 </head>
 <body>
 	<h1>Sucursales</h1>
-	<form action="${pageContext.request.contextPath}/formSucursal">
+	<form action="${pageContext.request.contextPath}/formSucursalAgregar">
 		<input type="submit" value="Agregar Sucursal">
 	</form>
 	
@@ -34,11 +34,13 @@
 				<td>${sucursal.nomGerente}</td>
 				<td>
 					<form action="${pageContext.request.contextPath}/perfilSucursal">
+						<input type="hidden" name="id" value="${sucursal.id}">
 						<input type="submit" value="Ver">
 					</form>	
 				</td>
 				<td>
-					<form action="${pageContext.request.contextPath}/formSucursal">
+					<form action="${pageContext.request.contextPath}/formSucursalEditar">
+						<input type="hidden" name="id" value="${sucursal.id}">
 						<input type="submit" value="Editar">
 					</form>
 				</td>

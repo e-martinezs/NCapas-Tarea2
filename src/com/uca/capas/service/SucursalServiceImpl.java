@@ -33,5 +33,4 @@ public class SucursalServiceImpl implements SucursalService{
 	public void delete(Sucursal s) {
 		sucursalRepository.delete(s);
 	}
-
 }

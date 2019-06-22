@@ -23,11 +23,22 @@ public class SucursalController {
 		return mav;
 	}
 
-	@RequestMapping("/formSucursal")
-	public ModelAndView formSucursal() {
+	@RequestMapping("/formSucursalAgregar")
+	public ModelAndView formSucursalAgregar() {
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("sucursal", new Sucursal());
-		mav.setViewName("agregarSucursal");
+		mav.addObject("label", "Agregar");
+		mav.setViewName("formSucursal");
+		return mav;
+	}
+	
+	@RequestMapping("/formSucursalEditar")
+	public ModelAndView formSucursalEditar(Integer id) {
+		ModelAndView mav = new ModelAndView();
+		Sucursal s = sucursalService.findById(id);
+		mav.addObject("sucursal", s);
+		mav.addObject("label", "Editar");
+		mav.setViewName("formSucursal");
 		return mav;
 	}
 	
