@@ -62,9 +62,12 @@ public class SucursalController {
 	}
 	
 	@RequestMapping("/perfilSucursal")
-	public ModelAndView perfilSucursal() {
+	public ModelAndView perfilSucursal(Integer id) {
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("main");
+		Sucursal s = sucursalService.findById(id);
+		mav.addObject("sucursal", s);
+		mav.addObject("empleados", s.getEmpleados());
+		mav.setViewName("perfilSucursal");
 		return mav;
 	}
 }
