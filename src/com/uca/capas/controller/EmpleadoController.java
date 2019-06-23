@@ -1,7 +1,10 @@
 package com.uca.capas.controller;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -28,7 +31,6 @@ public class EmpleadoController {
 		EmpleadoDTO dto = new EmpleadoDTO();
 		dto.setSucursalId(sucursalId);
 		mav.addObject("empleado", dto);
-		mav.addObject("label", "Agregar");
 		mav.setViewName("formEmpleado");
 		return mav;
 	}
@@ -45,19 +47,23 @@ public class EmpleadoController {
 		dto.setEstado(e.getEstado());
 		dto.setSucursalId(e.getSucursal().getId());
 		mav.addObject("empleado", dto);
-		mav.addObject("label", "Editar");
 		mav.setViewName("formEmpleado");
 		return mav;
 	}
 	
-	@RequestMapping("/agregarEmpleado")
-	public ModelAndView agregarEmpleado(@ModelAttribute EmpleadoDTO e) {
+	@RequestMapping("/updateEmpleado")
+	public ModelAndView updateEmpleado(@Valid @ModelAttribute EmpleadoDTO e, BindingResult result) {
 		ModelAndView mav = new ModelAndView();
-		empleadoService.save(e);
-		Sucursal s = sucursalService.findById(e.getSucursalId());
-		mav.addObject("sucursal", s);
-		mav.addObject("empleados", s.getEmpleados());
-		mav.setViewName("perfilSucursal");
+		if (result.hasErrors()) {
+			mav.addObject("empleado",e);
+			mav.setViewName("formEmpleado");
+		}else {
+			empleadoService.save(e);
+			Sucursal s = sucursalService.findById(e.getSucursalId());
+			mav.addObject("sucursal", s);
+			mav.addObject("empleados", s.getEmpleados());
+			mav.setViewName("perfilSucursal");
+		}
 		return mav;
 	}
 	

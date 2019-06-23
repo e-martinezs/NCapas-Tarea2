@@ -1,7 +1,10 @@
 package com.uca.capas.controller;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -28,7 +31,6 @@ public class SucursalController {
 	public ModelAndView formSucursalAgregar() {
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("sucursal", new Sucursal());
-		mav.addObject("label", "Agregar");
 		mav.setViewName("formSucursal");
 		return mav;
 	}
@@ -38,7 +40,6 @@ public class SucursalController {
 		ModelAndView mav = new ModelAndView();
 		Sucursal s = sucursalService.findById(id);
 		mav.addObject("sucursal", s);
-		mav.addObject("label", "Editar");
 		mav.setViewName("formSucursal");
 		return mav;
 	}
@@ -53,12 +54,17 @@ public class SucursalController {
 		return mav;
 	}
 	
-	@RequestMapping("/agregarSucursal")
-	public ModelAndView updateSucursal(@ModelAttribute Sucursal s) {
+	@RequestMapping("/updateSucursal")
+	public ModelAndView updateSucursal(@Valid @ModelAttribute Sucursal s, BindingResult result) {
 		ModelAndView mav = new ModelAndView();
-		sucursalService.save(s);
-		mav.addObject("sucursales",sucursalService.findAll());
-		mav.setViewName("verSucursales");
+		if (result.hasErrors()) {
+			mav.addObject("sucursal", s);
+			mav.setViewName("formSucursal");
+		}else {
+			sucursalService.save(s);
+			mav.addObject("sucursales",sucursalService.findAll());
+			mav.setViewName("verSucursales");
+		}
 		return mav;
 	}
 	

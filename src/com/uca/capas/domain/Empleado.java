@@ -10,6 +10,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(schema="public", name="empleado")
@@ -21,15 +25,21 @@ public class Empleado {
 	@Column(name="id")
 	private Integer id;
 	
+	@NotEmpty(message="Este campo no puede ir vacio")
+	@Size(max=30, message="La longitud debe estar entre 0 y 30")
 	@Column(name="nombre")
 	private String nombre;
 	
+	@NotNull(message="Este campo no puede ir vacio")
+	@Min(value=0, message="No puede ser negativo")
 	@Column(name="edad")
 	private Integer edad;
 	
+	@NotNull(message="Este campo no puede ir vacio")
 	@Column(name="genero")
-	private String genero;
+	private char genero;
 	
+	@NotNull(message="Este campo no puede ir vacio")
 	@Column(name="estado")
 	private Boolean estado;
 	
@@ -65,11 +75,11 @@ public class Empleado {
 		this.edad = edad;
 	}
 
-	public String getGenero() {
+	public char getGenero() {
 		return genero;
 	}
 
-	public void setGenero(String genero) {
+	public void setGenero(char genero) {
 		this.genero = genero;
 	}
 

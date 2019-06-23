@@ -7,6 +7,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(schema="public", name="usuario")
@@ -18,9 +20,13 @@ public class Usuario {
 	@Column(name="id")
 	private Integer id;
 	
+	@NotEmpty(message="Este campo no puede ir vacio")
+	@Size(max=30, message="La longitud debe estar entre 0 y 30")
 	@Column(name="username")
 	private String username;
 	
+	@NotEmpty(message="Este campo no puede ir vacio")
+	@Size(max=30, message="La longitud debe estar entre 0 y 30")
 	@Column(name="password")
 	private String password;
 	

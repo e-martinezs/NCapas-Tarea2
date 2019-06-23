@@ -10,10 +10,15 @@
 	<h1>Login</h1>
 	<form:form action="${pageContext.request.contextPath}/login" modelAttribute="usuario">
 		<label>Username: </label>
-		<form:input type="text" name="username" path="username"/><br>
+		<form:input type="text" name="username" path="username"/>
+		<form:errors path="username" cssStyle="color:#E81505;"></form:errors><br>
+		
 		<label>Password: </label>
-		<form:input type="password" name="password" path="password"/><br>
+		<form:input type="password" name="password" path="password"/>
+		<form:errors path="password" cssStyle="color:#E81505;"></form:errors><br>
+		
 		<input type="submit" value="Entrar">
 	</form:form>
+	<p style="color:#E81505;">${message}</p>
 </body>
 </html>

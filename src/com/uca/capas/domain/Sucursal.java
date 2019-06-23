@@ -11,6 +11,10 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(schema="public", name="sucursal")
@@ -22,21 +26,31 @@ public class Sucursal {
 	@Column(name="id")
 	private Integer id;
 	
+	@NotEmpty(message="Este campo no puede ir vacio")
+	@Size(max=30, message="La longitud debe estar entre 0 y 30")
 	@Column(name="nombre")
 	private String nombre;
 	
+	@NotEmpty(message="Este campo no puede ir vacio")
+	@Size(max=30, message="La longitud debe estar entre 0 y 30")
 	@Column(name="ubicacion")
 	private String ubicacion;
 	
+	@NotEmpty(message="Este campo no puede ir vacio")
 	@Column(name="horario_apertura")
 	private String horarioApertura;
 	
+	@NotEmpty(message="Este campo no puede ir vacio")
 	@Column(name="horario_cierre")
 	private String horarioCierre;
 	
+	@NotNull(message="Este campo no puede ir vacio")
+	@Min(value=0, message="No puede ser negativo")
 	@Column(name="nmesas")
 	private Integer nMesas;
 	
+	@NotEmpty(message="Este campo no puede ir vacio")
+	@Size(max=30, message="La longitud debe estar entre 0 y 30")
 	@Column(name="nomgerente")
 	private String nomGerente;
 	
