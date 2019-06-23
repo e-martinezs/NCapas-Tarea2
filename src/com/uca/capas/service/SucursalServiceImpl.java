@@ -16,7 +16,7 @@ public class SucursalServiceImpl implements SucursalService{
 	
 	@Override
 	public List<Sucursal> findAll() {
-		return sucursalRepository.findAll();
+		return sucursalRepository.findByOrderByIdAsc();
 	}
 	
 	@Override

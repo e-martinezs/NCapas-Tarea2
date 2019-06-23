@@ -1,0 +1,20 @@
+body{
+	background: #64b5f6;
+}
+
+.form{
+	margin: auto;
+	width: 50%;
+	padding: 10px;
+	text-align: center;
+}
+
+.content{
+	margin: auto;
+	width: 100%;
+	text-align: center;
+}
+
+.float-right{
+	float: right;
+}

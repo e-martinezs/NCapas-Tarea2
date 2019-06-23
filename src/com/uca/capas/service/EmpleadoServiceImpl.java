@@ -22,7 +22,7 @@ public class EmpleadoServiceImpl implements EmpleadoService{
 
 	@Override
 	public List<Empleado> findAll() {
-		return empleadoRepository.findAll();
+		return empleadoRepository.findByOrderByIdAsc();
 	}
 
 	@Override

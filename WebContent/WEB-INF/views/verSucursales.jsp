@@ -6,23 +6,31 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Sucursales</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<link rel="stylesheet" href="resources/style.css">
 </head>
 <body>
+<div class="content">
 	<h1>Sucursales</h1>
 	<form action="${pageContext.request.contextPath}/formSucursalAgregar">
-		<input type="submit" value="Agregar Sucursal">
+		<input class="btn btn-primary float-right" type="submit" value="Agregar Sucursal">
 	</form>
 	
-	<table>
+	<table class="table">
+		<thead class="thead-dark">
 		<tr>
-			<th>Codigo</th>
+			<th>Id</th>
 			<th>Nombre</th>
-			<th>Ubicacion</th>
+			<th>Ubicaci&oacute;n</th>
 			<th>Horario Apertura</th>
 			<th>Horario Cierre</th>
 			<th>Mesas</th>
 			<th>Gerente</th>
+			<th></th>
+			<th></th>
+			<th></th>
 		</tr>
+		</thead>
 		<c:forEach items="${sucursales}" var="sucursal">
 			<tr>
 				<td>${sucursal.id}</td>
@@ -35,23 +43,24 @@
 				<td>
 					<form action="${pageContext.request.contextPath}/perfilSucursal">
 						<input type="hidden" name="id" value="${sucursal.id}">
-						<input type="submit" value="Ver">
+						<input class="btn btn-secondary" type="submit" value="Ver">
 					</form>	
 				</td>
 				<td>
 					<form action="${pageContext.request.contextPath}/formSucursalEditar">
 						<input type="hidden" name="id" value="${sucursal.id}">
-						<input type="submit" value="Editar">
+						<input class="btn btn-secondary" type="submit" value="Editar">
 					</form>
 				</td>
 				<td>
 					<form action="${pageContext.request.contextPath}/eliminarSucursal">
 						<input type="hidden" name="id" value="${sucursal.id}">
-						<input type="submit" value="Eliminar">
+						<input class="btn btn-danger" type="submit" value="Eliminar">
 					</form>
 				</td>
 			</tr>
 		</c:forEach>
 	</table>
+</div>
 </body>
 </html>

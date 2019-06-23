@@ -86,6 +86,14 @@ public class Empleado {
 	public Boolean getEstado() {
 		return estado;
 	}
+	
+	public String getEstadoDelegate() {
+		if (estado) {
+			return "Activo";
+		}else {
+			return "Inactivo";
+		}
+	}
 
 	public void setEstado(Boolean estado) {
 		this.estado = estado;

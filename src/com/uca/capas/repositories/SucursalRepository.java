@@ -9,4 +9,6 @@ import com.uca.capas.domain.Sucursal;
 public interface SucursalRepository extends JpaRepository<Sucursal, Integer>{
 	
 	public List<Sucursal> findAll();
+	
+	public List<Sucursal> findByOrderByIdAsc();
 }
