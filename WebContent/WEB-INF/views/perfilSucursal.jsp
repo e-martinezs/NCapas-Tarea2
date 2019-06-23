@@ -38,8 +38,12 @@
 			<td>${sucursal.nomGerente}<td>
 		</tr>
 	</table>
+		<form action="${pageContext.request.contextPath}/verSucursales">
+		<input type="submit" value="Ver todas las sucursales">
+	</form>
 	<h2>Empleados</h2>
 	<form action="${pageContext.request.contextPath}/formEmpleadoAgregar">
+		<input type="hidden" name="sucursalId" value="${sucursal.id}">
 		<input type="submit" value="Agregar">
 	</form>
 	<table>
@@ -59,13 +63,14 @@
 				<td>${empleado.estado}</td>
 				<td>
 					<form action="${pageContext.request.contextPath}/formEmpleadoEditar">
-						<input type="hidden" name="id" value="${empleado.id}}">
+						<input type="hidden" name="id" value="${empleado.id}">
 						<input type="submit" value="Editar">
 					</form>
 				<td>
 				<td>
 					<form action="${pageContext.request.contextPath}/eliminarEmpleado">
-						<input type="hidden" name="id" value="${empleado.id}}">
+						<input type="hidden" name="id" value="${empleado.id}">
+						<input type="hidden" name="sucursalId" value="${sucursal.id}">
 						<input type="submit" value="Eliminar">
 					</form>
 				<td>

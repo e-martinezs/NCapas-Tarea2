@@ -10,7 +10,12 @@ public class MainController {
 	@RequestMapping("/")
 	public ModelAndView initMain() {
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("main");
+		mav.setViewName("login");
 		return mav;
+	}
+	
+	@RequestMapping("/login")
+	public Boolean validate() {
+		return false;
 	}
 }

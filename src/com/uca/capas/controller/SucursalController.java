@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.uca.capas.domain.Sucursal;
@@ -33,7 +34,7 @@ public class SucursalController {
 	}
 	
 	@RequestMapping("/formSucursalEditar")
-	public ModelAndView formSucursalEditar(Integer id) {
+	public ModelAndView formSucursalEditar(@RequestParam Integer id) {
 		ModelAndView mav = new ModelAndView();
 		Sucursal s = sucursalService.findById(id);
 		mav.addObject("sucursal", s);
@@ -43,7 +44,7 @@ public class SucursalController {
 	}
 	
 	@RequestMapping("/eliminarSucursal")
-	public ModelAndView eliminarSucursal(Integer id) {
+	public ModelAndView eliminarSucursal(@RequestParam Integer id) {
 		ModelAndView mav = new ModelAndView();
 		Sucursal s = sucursalService.findById(id);
 		sucursalService.delete(s);
@@ -62,7 +63,7 @@ public class SucursalController {
 	}
 	
 	@RequestMapping("/perfilSucursal")
-	public ModelAndView perfilSucursal(Integer id) {
+	public ModelAndView perfilSucursal(@RequestParam Integer id) {
 		ModelAndView mav = new ModelAndView();
 		Sucursal s = sucursalService.findById(id);
 		mav.addObject("sucursal", s);
